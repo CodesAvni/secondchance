@@ -5,7 +5,10 @@ export const updateProfile = async (
   bio: string,
   location: string,
   languages: string[],
-  accessibilityPreferences: string[]
+  accessibilityPreferences: string[],
+  preferredLanguage: string,
+  communicationPreference: string,
+  workPreference: string
 ) => {
   const user = await prisma.user.update({
     where: {
@@ -16,6 +19,9 @@ export const updateProfile = async (
       location,
       languages,
       accessibilityPreferences,
+      preferredLanguage,
+communicationPreference,
+workPreference,
       onboardingCompleted: true,
     },
   });

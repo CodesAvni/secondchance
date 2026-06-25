@@ -16,6 +16,12 @@ model User {
   location                 String?
   languages                String[]
   accessibilityPreferences String[]
+  preferredLanguage        String?
+  communicationPreference  String?
+  workPreference           String?
+  availability             String?
+  screenReaderSupport      Boolean?      @default(false)
+  captionRequirement       Boolean?      @default(false)
   createdAt                DateTime      @default(now())
   onboardingCompleted      Boolean       @default(false)
   password                 String
@@ -25,6 +31,7 @@ model User {
   reviewsGiven             Review[]      @relation("Reviewer")
   reviewsReceived          Review[]      @relation("Target")
   userSkills               UserSkill[]
+  
 }
 
 model Skill {
@@ -33,11 +40,16 @@ model Skill {
   category String
   users    UserSkill[]
 }
-
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
 model UserSkill {
   userId          String
   skillId         String
-  experienceLevel String
+  experienceLevel SkillLevel
   skill           Skill  @relation(fields: [skillId], references: [id])
   user            User   @relation(fields: [userId], references: [id])
 
@@ -56,13 +68,17 @@ model Opportunity {
   applications         Application[]
   employer             User          @relation(fields: [employerId], references: [id])
 }
-
+enum ApplicationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
 model Application {
   id            String      @id @default(uuid())
   applicantId   String
   opportunityId String
   audioIntroUrl String?
-  status        String      @default("PENDING")
+  status        ApplicationStatus      @default(PENDING)
   createdAt     DateTime    @default(now())
   applicant     User        @relation(fields: [applicantId], references: [id])
   opportunity   Opportunity @relation(fields: [opportunityId], references: [id])
@@ -86,4 +102,5 @@ model Profile {
   communicationPreference String?
   workPreference          String?
   user                    User    @relation(fields: [userId], references: [id])
+    resumeUrl String?
 }

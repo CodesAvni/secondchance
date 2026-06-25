@@ -1,0 +1,11 @@
+/*
+  Warnings:
+
+  - You are about to drop the column `resumeUrl` on the `User` table. All the data in the column will be lost.
+
+*/
+-- AlterTable
+ALTER TABLE "public"."Profile" ADD COLUMN     "resumeUrl" TEXT;
+
+-- AlterTable
+ALTER TABLE "public"."User" DROP COLUMN "resumeUrl";
