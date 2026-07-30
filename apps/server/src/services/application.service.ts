@@ -21,8 +21,6 @@ export const createApplication = async (
     );
   }
 
-
-
   return prisma.application.create({
     data: {
       applicantId,
