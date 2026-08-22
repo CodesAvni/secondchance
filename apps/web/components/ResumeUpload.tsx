@@ -80,7 +80,7 @@ export default function ResumeUpload() {
         <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-sm text-emerald-800 flex items-center justify-between">
           <span>✅ You have already uploaded a resume.</span>
           <a 
-            href={`http://localhost:5000/${existingResume}`} // Point to backend URL port
+            href={`${process.env.NEXT_PUBLIC_API_URL}/${existingResume}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="underline font-medium hover:text-emerald-900"
