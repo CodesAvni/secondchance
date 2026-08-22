@@ -1,11 +1,10 @@
-export const dynamic = 'force-dynamic';
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import api from "@/lib/axios";
 
-export default function EmployerApplications() {
+function EmployerApplicationsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const opportunityId = searchParams.get("opportunityId");
@@ -166,5 +165,12 @@ export default function EmployerApplications() {
 
       </div>
     </div>
+  );
+}
+export default function EmployerApplications() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EmployerApplicationsContent />
+    </Suspense>
   );
 }
