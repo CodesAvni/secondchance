@@ -10,9 +10,20 @@ import applicationRoutes from "./routes/application.routes";
 import path from "path";
 import aiRoutes from "./routes/ai.routes";
 const app = express();
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://secondchance-lty8.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
