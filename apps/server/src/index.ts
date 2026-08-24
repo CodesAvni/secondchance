@@ -12,7 +12,7 @@ import aiRoutes from "./routes/ai.routes";
 const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://secondchance-lty8.vercel.app",
+  "https://secondchance-ity8.vercel.app",
 ];
 
 app.use(
