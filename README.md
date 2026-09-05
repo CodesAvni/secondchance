@@ -10,6 +10,8 @@ It bridges the gap between **career returners** and **opportunity providers** us
 
 ##  Live Concept
 
+
+Live Demo: https://secondchance-ity8.vercel.app
 SecondChance empowers:
 -  Job seekers restarting careers (maternity, health breaks, personal reasons)
 -  Employers offering flexible and inclusive opportunities
